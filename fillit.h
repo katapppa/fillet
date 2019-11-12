@@ -1,0 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fillit.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/12 16:40:21 by cgamora           #+#    #+#             */
+/*   Updated: 2019/11/12 18:48:00 by cgamora          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef FILLIT_H
+# define FILLIT_H
+# include <stdio.h>
+# include <fcntl.h>
+# include <unistd.h>
+# include "get_next_line.h"
+
+int		provif(char *line, int c, int fig);
+int		proverka(int fd, char *line, int fig, int i);
+int		proverka_soseda(char *buf);
+int		stroka(void);
+
+#endif

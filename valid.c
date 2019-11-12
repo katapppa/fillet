@@ -6,11 +6,11 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 16:36:14 by cgamora           #+#    #+#             */
-/*   Updated: 2019/11/09 19:00:12 by cgamora          ###   ########.fr       */
+/*   Updated: 2019/11/12 17:15:05 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "fillit.h"
 
 int		proverka_soseda(char *buf)
 {
@@ -96,10 +96,4 @@ int		stroka(void)
 	}
 	close(fd);
 	return (1);
-}
-
-
-int		main(void)
-{
-		return(stroka());
 }
