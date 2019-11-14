@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 16:36:14 by cgamora           #+#    #+#             */
-/*   Updated: 2019/11/14 18:35:34 by cgamora          ###   ########.fr       */
+/*   Updated: 2019/11/14 20:52:26 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,35 +19,31 @@ int		proverka_soseda(char *buf)
 
 	i = 0;
 	count = 0;
-	while(buf[i] != '\0')
+	while (buf[i] != '\0')
 	{
-		while(buf[i] != '#' && buf[i] != '\0')
-		{
+		while (buf[i] != '#' && buf[i] != '\0')
 			i++;
-		}
 		if (buf[i] == '\0')
 			break ;
-		printf("%c\n", buf[i]);
-		if(buf[i + 1] == '#')
+		if (buf[i + 1] == '#')
 			count++;
-		if(buf[i - 1] =='#')
+		if (buf[i - 1] == '#')
 			count++;
-		if(buf[i + 4] == '#')
+		if (buf[i + 4] == '#')
 			count++;
-		if(buf[i - 4] == '#')
+		if (buf[i - 4] == '#')
 			count++;
 		i++;
 	}
-	printf("count: %d\n", count);
 	if (count == 6 || count == 8)
-		printf("chetko\n");
+		write(1, "chetko\n", sizeof("chetko\n"));
 	return (0);
 }
 
 int		stroka(int fd, char *line, char **argv)
 {
 	char	*buf[30];
-	char 	*tmp;	
+	char	*tmp;
 	int		j;
 	int		i;
 
@@ -60,9 +56,8 @@ int		stroka(int fd, char *line, char **argv)
 		i++;
 	}
 	i = 0;
-	while(get_next_line(fd, &line) > 0)
+	while (get_next_line(fd, &line) > 0)
 	{
-		printf("%s\n", line);
 		if (line[0] != '\0')
 		{
 			tmp = buf[i];
@@ -72,14 +67,12 @@ int		stroka(int fd, char *line, char **argv)
 			free(line);
 		}
 		else
-		{
 			i++;
-		}
+		if (i > 26)
+			return (0);
 	}
 	i--;
-	if (i > 25)
-		printf("SLISHKOM MNOGA FIGUROK!!!!\n");
-	while(i>=j)
+	while (i >= j)
 	{
 		printf("STROKA %d: %s\n", j, buf[j]);
 		proverka_soseda(buf[j]);

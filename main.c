@@ -6,11 +6,21 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 13:23:12 by cgamora           #+#    #+#             */
-/*   Updated: 2019/11/14 18:26:53 by cgamora          ###   ########.fr       */
+/*   Updated: 2019/11/14 20:52:28 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+void	cikl(char *line, int *i, int *fig)
+{
+	while (line[*i] == '.' || line[*i] == '#')
+	{
+		if (line[*i] == '#')
+			*fig = *fig + 1;
+		*i = *i + 1;
+	}
+}
 
 int		proverka(int fd, char *line, int fig, int i)
 {
@@ -20,12 +30,7 @@ int		proverka(int fd, char *line, int fig, int i)
 	while (get_next_line(fd, &line) > 0)
 	{
 		i = 0;
-		while (line[i] == '.' || line[i] == '#')
-		{
-			if (line[i] == '#')
-				fig++;
-			i++;
-		}
+		cikl(line, &i, &fig);
 		c++;
 		if ((c == 5 && line[0] != '\0') || (c == 4 && fig != 4))
 			return (0);
@@ -40,7 +45,7 @@ int		proverka(int fd, char *line, int fig, int i)
 	}
 	if (line[0] != '\0')
 		return (0);
-	close (fd);
+	close(fd);
 	return (1);
 }
 
@@ -53,9 +58,10 @@ int		main(int argc, char **argv)
 
 	fig = 0;
 	i = 0;
+	line = ft_strnew(0);
 	if (argc == 1)
 	{
-		printf("ASHIBKAA");
+		write(1, "ASHIBKAA", sizeof("ASHIBKAA"));
 		return (0);
 	}
 	if (argc > 2)
@@ -64,12 +70,12 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	fd = open(argv[1], O_RDONLY);
-	if(proverka(fd, line, fig, i))
+	if (proverka(fd, line, fig, i))
 	{
-		if(stroka(fd, line, argv) == 0)
+		if (stroka(fd, line, argv) == 0)
 			printf("OSHIBKA PROVERKI 2");
 	}
-	else 
+	else
 		printf("OSHIBKA PROVERKI 1");
 	return (1);
 }
