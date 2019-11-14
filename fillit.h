@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 16:40:21 by cgamora           #+#    #+#             */
-/*   Updated: 2019/11/12 18:48:00 by cgamora          ###   ########.fr       */
+/*   Updated: 2019/11/14 16:50:56 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@
 # include <unistd.h>
 # include "get_next_line.h"
 
-int		provif(char *line, int c, int fig);
 int		proverka(int fd, char *line, int fig, int i);
 int		proverka_soseda(char *buf);
-int		stroka(void);
+int		stroka(int fd, char *line, char **argv);
 
 #endif
