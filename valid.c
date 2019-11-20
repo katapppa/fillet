@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 16:36:14 by cgamora           #+#    #+#             */
-/*   Updated: 2019/11/14 20:52:26 by cgamora          ###   ########.fr       */
+/*   Updated: 2019/11/20 18:13:48 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int		stroka(int fd, char *line, char **argv)
 		proverka_soseda(buf[j]);
 		j++;
 	}
+	korlist(buf);
 	close(fd);
 	return (1);
 }

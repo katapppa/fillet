@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 16:40:21 by cgamora           #+#    #+#             */
-/*   Updated: 2019/11/14 20:52:25 by cgamora          ###   ########.fr       */
+/*   Updated: 2019/11/20 18:18:14 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,23 @@
 # include <unistd.h>
 # include "get_next_line.h"
 
+typedef struct	s_figura
+{
+	int				coord[8];
+	char			letter;
+	struct s_figura	*next;
+}				t_fig;
+
+typedef struct	s_map
+{
+	char	**map;	
+}				t_mp;
+
 int		proverka(int fd, char *line, int fig, int i);
 int		proverka_soseda(char *buf);
 int		stroka(int fd, char *line, char **argv);
 void	cikl(char *line, int *i, int *fig);
+t_fig	*korzap(char	**buf, int j, char letter);
+int		korlist(char **buf);
 
 #endif
