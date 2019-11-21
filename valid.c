@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 16:36:14 by cgamora           #+#    #+#             */
-/*   Updated: 2019/11/21 19:10:20 by cgamora          ###   ########.fr       */
+/*   Updated: 2019/11/21 21:25:05 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,19 @@ int		proverka_soseda(char *buf)
 	return (0);
 }
 
+int		provern(int fd, char **argv, int i)
+{
+	int le;
+
+	le = checkn(fd, argv);
+	if (le % 2 == 0 && i % 2 == 0)
+		return (1);
+	else if (le % 2 != 0 && i % 2 != 0)
+		return (1);
+	else
+		return (0);
+}
+
 int		stroka(int fd, char *line, char **argv)
 {
 	char	*buf[30];
@@ -68,10 +81,12 @@ int		stroka(int fd, char *line, char **argv)
 		}
 		else
 			i++;
-		if (i > 26)
+		if (i > 25)
 			return (0);
 	}
-	i--;
+	close(fd);
+	if (provern(fd, argv, i) == 0)
+		return (0);
 	while (i >= j)
 	{
 		printf("STROKA %d: %s\n", j, buf[j]);
@@ -79,6 +94,6 @@ int		stroka(int fd, char *line, char **argv)
 		j++;
 	}
 	korlist(buf, i);
-	close(fd);
+	checkn(fd, argv);
 	return (1);
 }

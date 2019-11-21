@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 16:40:21 by cgamora           #+#    #+#             */
-/*   Updated: 2019/11/21 19:10:18 by cgamora          ###   ########.fr       */
+/*   Updated: 2019/11/21 21:01:07 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@ void	cikl(char *line, int *i, int *fig);
 t_fig	*korzap(char	**buf, int j, char letter);
 int		korlist(char **buf, int size);
 t_fig	*sort(t_fig *figurs);
+int		checkn(int fd, char **argv);
+int		provern(int fd, char **argv, int i);
 
 #endif

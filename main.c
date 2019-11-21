@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 13:23:12 by cgamora           #+#    #+#             */
-/*   Updated: 2019/11/18 20:19:33 by cgamora          ###   ########.fr       */
+/*   Updated: 2019/11/21 21:20:39 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,28 @@ void	cikl(char *line, int *i, int *fig)
 	}
 }
 
+int		checkn(int fd, char **argv)
+{
+	char leni[5 + 1];
+	int rb;
+	int c;
+
+	c = 0;
+	fd = open(argv[1], O_RDONLY);
+	while ((rb = read(fd, leni, 5)))
+	{
+		c += rb;
+	}
+	close (fd);
+	return (c);
+}
+
 int		proverka(int fd, char *line, int fig, int i)
 {
 	int c;
 
 	c = 0;
-	while (get_next_line(fd, &line) > 0)
+	while ((get_next_line(fd, &line) > 0))
 	{
 		i = 0;
 		cikl(line, &i, &fig);
@@ -43,8 +59,8 @@ int		proverka(int fd, char *line, int fig, int i)
 		if (i != 4)
 			return (0);
 	}
-	if (line[0] != '\0')
-		return (0);
+	if (line[0] == '\0')
+	 	return (0);
 	close(fd);
 	return (1);
 }

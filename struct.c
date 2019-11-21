@@ -45,7 +45,7 @@ int		korlist(char **buf, int size)
 
 	letters = 'A';
 	i = 0;
-	while (i < size)
+	while (i <= size)
 	{
 		if (letters == 'A')
 		{
