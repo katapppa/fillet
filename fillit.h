@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 16:40:21 by cgamora           #+#    #+#             */
-/*   Updated: 2019/11/21 21:01:07 by cgamora          ###   ########.fr       */
+/*   Updated: 2019/11/22 19:36:40 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ typedef struct	s_figura
 {
 	int				coord[8];
 	char			letter;
+	int				smesh_x;
+	int				smesh_y;
 	struct s_figura	*next;
 }				t_fig;
 

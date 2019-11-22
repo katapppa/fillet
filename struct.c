@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   struct.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/22 16:32:18 by cgamora           #+#    #+#             */
+/*   Updated: 2019/11/22 18:40:26 by cgamora          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 
-void	free_map(t_mp *map)
+void	free_map(t_mp *map, int size)
 {
 	int i;
 
@@ -15,7 +27,7 @@ void	free_map(t_mp *map)
 }
 
 
-int		crmap(void)
+int		crmap(int size)
 {
 	t_mp	*mep;
 	char	i;
@@ -24,15 +36,13 @@ int		crmap(void)
 	mep = (t_mp*)malloc(sizeof(t_mp));
 	if (mep == NULL)
 		return (0);
-	mep->map = (char**)malloc(sizeof(char*) * 4);
-	while (i < 4)
+	mep->map = (char**)malloc(sizeof(char*) * size);
+	while (i < size)
 	{
-		mep->map[i] = ft_strnew(4);
-		ft_memset(mep->map[i], '.', 4);
-		printf("%s\n", mep->map[i]);
+		mep->map[i] = ft_strnew(size);
+		ft_memset(mep->map[i], '.', size);
 		i++;
 	}
-	free_map(mep);
 	return(0);
 }
 
@@ -130,5 +140,7 @@ t_fig	*korzap(char	**buf, int j, char letters)
 		}
 		i++;
 	}
+	figurs->smesh_x = 0;
+	figurs->smesh_y = 0;
 	return (sort(figurs));
 }

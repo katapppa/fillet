@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 16:36:14 by cgamora           #+#    #+#             */
-/*   Updated: 2019/11/21 21:25:05 by cgamora          ###   ########.fr       */
+/*   Updated: 2019/11/22 19:36:43 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,18 @@ int		proverka_soseda(char *buf)
 			i++;
 		if (buf[i] == '\0')
 			break ;
-		if (buf[i + 1] == '#')
+		if (buf[i + 1] == '#' && i + 1 < 17)
 			count++;
 		if (buf[i - 1] == '#')
 			count++;
-		if (buf[i + 4] == '#')
+		if (buf[i + 4] == '#' && i + 4 < 17)
 			count++;
-		if (buf[i - 4] == '#')
+		if (buf[i - 4] == '#' && i - 4 > 0)
 			count++;
 		i++;
 	}
 	if (count == 6 || count == 8)
-		write(1, "chetko\n", sizeof("chetko\n"));
+		printf("Chetko!!\n");
 	return (0);
 }
 

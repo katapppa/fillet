@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 13:23:12 by cgamora           #+#    #+#             */
-/*   Updated: 2019/11/21 21:20:39 by cgamora          ###   ########.fr       */
+/*   Updated: 2019/11/22 19:36:44 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	cikl(char *line, int *i, int *fig)
 
 int		checkn(int fd, char **argv)
 {
-	char leni[5 + 1];
+	char *leni[5 + 1];
 	int rb;
 	int c;
 
