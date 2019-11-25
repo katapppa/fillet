@@ -6,28 +6,28 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 16:32:18 by cgamora           #+#    #+#             */
-/*   Updated: 2019/11/22 18:40:26 by cgamora          ###   ########.fr       */
+/*   Updated: 2019/11/25 19:05:28 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	free_map(t_mp *map, int size)
+void	free_map(t_mp *mep, int size)
 {
 	int i;
 
 	i = 0;
-	while (i < 4)
+	while (i < size)
 	{
-		ft_memdel((void **)&(map->map[i]));
+		ft_memdel((void **)&(mep->map[i]));
 		i++;
 	}
-	ft_memdel((void **)&(map->map));
-	ft_memdel((void **)&map);
+	ft_memdel((void **)&(mep->map));
+	ft_memdel((void **)&mep);
 }
 
 
-int		crmap(int size)
+t_mp	*crmap(int size)
 {
 	t_mp	*mep;
 	char	i;
@@ -43,7 +43,7 @@ int		crmap(int size)
 		ft_memset(mep->map[i], '.', size);
 		i++;
 	}
-	return(0);
+	return (mep);
 }
 
 int		korlist(char **buf, int size)
@@ -91,6 +91,7 @@ int		korlist(char **buf, int size)
 		letters++;
 	}
 	figurs->next = NULL;
+	map(first, size);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 16:40:21 by cgamora           #+#    #+#             */
-/*   Updated: 2019/11/22 19:36:40 by cgamora          ###   ########.fr       */
+/*   Updated: 2019/11/25 18:50:49 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,9 @@ int		korlist(char **buf, int size);
 t_fig	*sort(t_fig *figurs);
 int		checkn(int fd, char **argv);
 int		provern(int fd, char **argv, int i);
+t_mp	*crmap(int size);
+void	free_map(t_mp *mep, int size);
+void	printmep(t_mp *mepa, int size);
+void	map(t_fig *figurs, int j);
 
 #endif

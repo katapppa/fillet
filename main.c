@@ -6,11 +6,23 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 13:23:12 by cgamora           #+#    #+#             */
-/*   Updated: 2019/11/22 19:36:44 by cgamora          ###   ########.fr       */
+/*   Updated: 2019/11/25 19:00:17 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+void	printmep(t_mp *mepa, int size)
+{
+	int i;
+
+	i = 0;
+	while(i < size)
+	{
+		printf("%s\n", mepa->map[i]);
+		i++;
+	}
+}
 
 void	cikl(char *line, int *i, int *fig)
 {
