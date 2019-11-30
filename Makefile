@@ -6,11 +6,11 @@
 #    By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/20 15:48:45 by cgamora           #+#    #+#              #
-#    Updated: 2019/11/20 15:51:34 by cgamora          ###   ########.fr        #
+#    Updated: 2019/11/30 19:00:57 by cgamora          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ./a.out
+NAME = ./fillit
 SRCS = ./*.c 
 OBJS = ./*.o
 HDR = ./fillit.h 

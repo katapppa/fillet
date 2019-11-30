@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 13:23:12 by cgamora           #+#    #+#             */
-/*   Updated: 2019/11/25 19:00:17 by cgamora          ###   ########.fr       */
+/*   Updated: 2019/11/30 18:39:55 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,16 @@ int		proverka(int fd, char *line, int fig, int i)
 			fig = 0;
 			i = 4;
 		}
+		free(line);
 		if (i != 4)
 			return (0);
 	}
-	if (line[0] == '\0')
-	 	return (0);
+	//free(line);
+	// if (line[0] == '\0' || (c != 0 && c != 4))
+	// {
+	// 	//ft_memdel((void**)&line);
+	// 	return (0);
+	// }
 	close(fd);
 	return (1);
 }
@@ -100,10 +105,15 @@ int		main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (proverka(fd, line, fig, i))
 	{
+		ft_memdel((void**)&line);
 		if (stroka(fd, line, argv) == 0)
+		{
+			//free(line);
 			printf("OSHIBKA PROVERKI 2");
+		}
 	}
 	else
 		printf("OSHIBKA PROVERKI 1");
+	close(fd);
 	return (1);
 }

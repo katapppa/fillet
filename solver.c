@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 16:32:29 by cgamora           #+#    #+#             */
-/*   Updated: 2019/11/25 19:07:50 by cgamora          ###   ########.fr       */
+/*   Updated: 2019/11/30 19:05:44 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,43 +21,51 @@ void	zapisat(t_mp *mepa, t_fig *figurs, char letter)
 	x = 0;
 	y = 0;
 	i = 0;
-	while(i < 8)
+	while(i < 4)
 	{
-		y = figurs->coord[i + 1] + figurs->smesh_y;
-		x = figurs->coord[i] + figurs->smesh_x; 
+		y = figurs->coord_y[i] + figurs->smesh_y;
+		x = figurs->coord_x[i] + figurs->smesh_x; 
 		mepa->map[y][x] = letter;
-		i += 2;
+		i++;
 	}
 }
 
-int		grfig(t_mp *mepa, t_fig *figurs)
+int		grfig(t_mp *mepa, t_fig *figurs) //pepe
 {
 	int x;
 	int y;
 	int i;
+	int f;
 
 	x = 0;
 	y = 0;
 	i = 0;
-	y = figurs->coord[i + 1] + figurs->smesh_y;
-	x = figurs->coord[i] + figurs->smesh_x;
-	while (i < 7 && mepa->map[y][x] == '.')
+	f = 0;
+	while (i < 4)
 	{
-		i += 2;
-		y = figurs->coord[i + 1] + figurs->smesh_y;
-		x = figurs->coord[i] + figurs->smesh_x;
+		y = figurs->coord_y[i] + figurs->smesh_y;
+		x = figurs->coord_x[i] + figurs->smesh_x;
+		if (mepa->map[y][x] == '.')
+			f++;
+		i++;
 	}
-	return (i != 8);
+	return (f != 4);
 }
 
-int		provmap(t_fig *figurs, int size, char bukva)
+int		prov_y(t_fig *figurs, int size)
 {
-	if (bukva == 'x')
-		return (figurs->coord[1] + figurs->smesh_y < size && figurs->coord[3] + figurs->smesh_y < size &&
-		figurs->coord[5] + figurs->smesh_y < size && figurs->coord[7] + figurs->smesh_y < size);
-	else
-		return (figurs->coord[0] + figurs->smesh_x < size && figurs->coord[2] + figurs->smesh_x < size &&
-		figurs->coord[4] + figurs->smesh_x < size && figurs->coord[6] + figurs->smesh_x < size);
+		return (figurs->coord_y[0] + figurs->smesh_y < size && figurs->coord_y[1] + figurs->smesh_y < size &&
+		figurs->coord_y[2] + figurs->smesh_y < size && figurs->coord_y[3] + figurs->smesh_y < size);
+		//return (figurs->coord[0] + figurs->smesh_x < size && figurs->coord[2] + figurs->smesh_x < size &&
+		//figurs->coord[4] + figurs->smesh_x < size && figurs->coord[6] + figurs->smesh_x < size);
+}
+
+int		prov_x(t_fig *figurs, int size)
+{
+		return (figurs->coord_x[0] + figurs->smesh_x < size && figurs->coord_x[1] + figurs->smesh_x < size &&
+		figurs->coord_x[2] + figurs->smesh_x < size && figurs->coord_x[3] + figurs->smesh_x < size);
+		//return (figurs->coord[0] + figurs->smesh_x < size && figurs->coord[2] + figurs->smesh_x < size &&
+		//figurs->coord[4] + figurs->smesh_x < size && figurs->coord[6] + figurs->smesh_x < size);
 }
 
 int		solve(t_mp *mepa, t_fig *figurs, int size)
@@ -66,9 +74,9 @@ int		solve(t_mp *mepa, t_fig *figurs, int size)
 		return (1);
 	figurs->smesh_x = 0;
 	figurs->smesh_y = 0;
-	while (provmap(figurs, size, 'x'))
+	while (prov_y(figurs, size))
 	{
-		while (provmap(figurs, size, 'y'))
+		while (prov_x(figurs, size))
 		{
 			if (!grfig(mepa, figurs))
 			{

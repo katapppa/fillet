@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 16:36:14 by cgamora           #+#    #+#             */
-/*   Updated: 2019/11/22 19:39:56 by cgamora          ###   ########.fr       */
+/*   Updated: 2019/11/30 18:48:57 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int		proverka_soseda(char *buf)
 {
 	int i;
 	int count;
+	int flag;
 
 	i = 0;
 	count = 0;
@@ -25,18 +26,18 @@ int		proverka_soseda(char *buf)
 			i++;
 		if (buf[i] == '\0')
 			break ;
-		if (buf[i + 1] == '#' && i + 1 < 17)
+		if (i + 1 < 17 && buf[i + 1] == '#')
 			count++;
-		if (buf[i - 1] == '#')
+		if (i - 1 >= 0 && buf[i - 1] == '#')
 			count++;
-		if (buf[i + 4] == '#' && i + 4 < 17)
+		if (i + 4 < 17 && buf[i + 4] == '#')
 			count++;
-		if (buf[i - 4] == '#' && i - 4 > 0)
+		if (i - 4 >= 0 && buf[i - 4] == '#')
 			count++;
 		i++;
 	}
 	if (count == 6 || count == 8)
-		printf("Chetko!!\n");
+		return (1);
 	return (0);
 }
 
@@ -55,15 +56,16 @@ int		provern(int fd, char **argv, int i)
 
 int		stroka(int fd, char *line, char **argv)
 {
-	char	*buf[30];
+	char	**buf;
 	char	*tmp;
 	int		j;
 	int		i;
 
 	i = 0;
 	j = 0;
+	buf = (char**)malloc(sizeof(char*)*26);
 	fd = open(argv[1], O_RDONLY);
-	while (i < 30)
+	while (i < 26)
 	{
 		buf[i] = ft_strnew(0);
 		i++;
@@ -75,12 +77,14 @@ int		stroka(int fd, char *line, char **argv)
 		{
 			tmp = buf[i];
 			buf[i] = ft_strjoin(tmp, line);
-			free(tmp);
-			tmp = NULL;
+			ft_memdel((void**)&tmp);
 			free(line);
 		}
 		else
+		{
 			i++;
+			ft_memdel((void**)&line);
+		}
 		if (i > 25)
 			return (0);
 	}
@@ -89,11 +93,17 @@ int		stroka(int fd, char *line, char **argv)
 		return (0);
 	while (i >= j)
 	{
-		printf("STROKA %d: %s\n", j, buf[j]);
-		proverka_soseda(buf[j]);
+		if (proverka_soseda(buf[j]) == 0)
+			return (0);
 		j++;
 	}
 	korlist(buf, i);
-	checkn(fd, argv);
+	i = 0;
+	while (i <= 25)
+	{
+		free(buf[i]);
+		i++;
+	}
+	free(buf);
 	return (1);
 }
