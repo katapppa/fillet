@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 13:23:12 by cgamora           #+#    #+#             */
-/*   Updated: 2019/11/30 18:39:55 by cgamora          ###   ########.fr       */
+/*   Updated: 2019/12/02 17:27:25 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,21 @@ int		checkn(int fd, char **argv)
 int		proverka(int fd, char *line, int fig, int i)
 {
 	int c;
+	int f;
 
 	c = 0;
-	while ((get_next_line(fd, &line) > 0))
+	f = 0;
+	while ((f = get_next_line(fd, &line)))
 	{
+		if (f == 0)
+		{
+			if (line[0] == '\0' || (c != 0 && c != 4))
+			{
+				ft_memdel((void**)&line);
+				//free(line);
+				return (0);
+			}
+		}
 		i = 0;
 		cikl(line, &i, &fig);
 		c++;
@@ -72,10 +83,10 @@ int		proverka(int fd, char *line, int fig, int i)
 		if (i != 4)
 			return (0);
 	}
-	//free(line);
 	// if (line[0] == '\0' || (c != 0 && c != 4))
 	// {
 	// 	//ft_memdel((void**)&line);
+	// 	//free(line);
 	// 	return (0);
 	// }
 	close(fd);
